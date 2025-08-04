@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter_riverpod_mvvm/user.dart';
 
 class UserRepository {
