@@ -48,19 +48,22 @@ class HomeViewModel extends Notifier<HomeState> {
     //그럼 이 상태 객체를 업데이트 해줘야함.
     //이렇게 하면 홈스테이트 클래스 자체가 바뀌지 않아서
     //이렇게 적으면면 뷰모델이 위젯으로 알려주지 않는다.
+  }
+}
 
-    //3. 이제 뷰모델을 위젯에게 공급해줄 관리자 만들기.
-    //'=' 오른쪽에 얘 NotifierProvider 클래스를 사용해서 뷰모델 관리자를 만들어줘야함.
-    final homeViewModelProvider = NotifierProvider<HomeViewModel, HomeState>(
-      () {
-        return HomeViewModel(); // 뷰모델 객체 생성해서 돌려줌.
-      }, // NotifierProvider의 생성자 안에는 나중에 뷰가 이 뷰모델 달라고 요청할때,
-      //뷰모델을 생성해서 돌려줄 함수를 같이 넘겨줘야함.
-    );
+// 뷰모델 관리자는 전역으로 선언되어야하기 때문에, 반드시 클래스 바깥에다 빼야함.
+//(클래스안에 다 선언해놓으면 다른 위젯에서 뷰모델 관리자를 사용하려고 접근할 수 없음)
+//3. 이제 뷰모델을 위젯에게 공급해줄 관리자 만들기.
+//'=' 오른쪽에 얘 NotifierProvider 클래스를 사용해서 뷰모델 관리자를 만들어줘야함.
+final homeViewModelProvider = NotifierProvider<HomeViewModel, HomeState>(
+  () {
+    return HomeViewModel(); // 뷰모델 객체 생성해서 돌려줌.
+  }, // NotifierProvider의 생성자 안에는 나중에 뷰가 이 뷰모델 달라고 요청할때,
+  //뷰모델을 생성해서 돌려줄 함수를 같이 넘겨줘야함.
+);
     // 노티파이어 프로바이더라는클래스는 리버팟 패키지의/notifier_provider.dart 파일에
     // NotifierProvider 클래스가 정의되어 있습니다!
 
     /*이 뷰(위젯)home_page.dart로 가서
     이 뷰모델에서 데이터 가져와서 출력하는 코드 작성하러가자자 */
-  }
-}
+    
